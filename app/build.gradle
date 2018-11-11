@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.sniper.bdd"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner getInstrumentation()
+    }
+    buildTypes {
+        debug {
+            buildConfigField 'String', 'TEST_TAGS', '"' + getTestTags() + '"'
+            buildConfigField 'String', 'TEST_SCENARIO', '"' + getTestScenario() + '"'
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+def getInstrumentation() {
+    project.hasProperty('cucumber') ? 'com.sniper.bdd.cucumber.runner.CucumberTestRunner' : 'android.support.test.runner.AndroidJUnitRunner'
+}
+
+def getTestTags() {
+    project.getProperties().get('tags') ?: ''
+}
+
+def getTestScenario() {
+    project.getProperties().get('scenario') ?: ''
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    testImplementation 'junit:junit:4.12'
+
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation'com.android.support.test.espresso:espresso-intents:3.0.2'
+
+    androidTestImplementation 'info.cukes:cucumber-android:1.2.5'
+    androidTestImplementation 'info.cukes:cucumber-picocontainer:1.2.5'
+
+//    dependencies.androidTestImplementation(librariesTest.supportEspressoContrib) {
+//        exclude module: 'support-annotations'
+//        exclude module: 'recyclerview-v7'
+//        exclude module: 'design'
+//        exclude module: 'support-v4'
+//    }
+//
+//    dependencies.androidTestImplementation(librariesTest.supportTestRules) {
+//        exclude module: 'support-annotations'
+//    }
+
+}
