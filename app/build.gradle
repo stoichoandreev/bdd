@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -52,16 +50,5 @@ dependencies {
 
     androidTestImplementation 'info.cukes:cucumber-android:1.2.5'
     androidTestImplementation 'info.cukes:cucumber-picocontainer:1.2.5'
-
-//    dependencies.androidTestImplementation(librariesTest.supportEspressoContrib) {
-//        exclude module: 'support-annotations'
-//        exclude module: 'recyclerview-v7'
-//        exclude module: 'design'
-//        exclude module: 'support-v4'
-//    }
-//
-//    dependencies.androidTestImplementation(librariesTest.supportTestRules) {
-//        exclude module: 'support-annotations'
-//    }
 
 }
