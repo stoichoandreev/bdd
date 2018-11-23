@@ -16,46 +16,38 @@ import java.lang.Thread.sleep
 
 class LoginScreenRobot {
 
-    fun launchLoginScreen(testRule: ActivityTestRule<LoginActivity>): LoginScreenRobot {
+    fun launchLoginScreen(testRule: ActivityTestRule<LoginActivity>) {
         testRule.launchActivity(null)
-        return this
     }
 
-    fun selectEmailField(): LoginScreenRobot {
+    fun selectEmailField() {
         onView(withId(R.id.email)).perform(click())
-        return this
     }
 
-    fun selectPasswordField(): LoginScreenRobot {
+    fun selectPasswordField() {
         onView(withId(R.id.password)).perform(click())
-        return this
     }
 
-    fun enterEmail(email: String): LoginScreenRobot {
+    fun enterEmail(email: String) {
         onView(withId(R.id.email)).perform(typeText(email))
-        return this
     }
 
-    fun enterPassword(password: String): LoginScreenRobot {
+    fun enterPassword(password: String) {
         onView(withId(R.id.password)).perform(typeText(password))
-        return this
     }
 
-    fun closeKeyboard(): LoginScreenRobot {
+    fun closeKeyboard() {
         Espresso.closeSoftKeyboard()
         sleep(100)
-        return this
     }
 
-    fun clickSignInButton(): LoginScreenRobot {
+    fun clickSignInButton() {
         onView(withText(InstrumentationRegistry.getTargetContext().getString(R.string.action_sign_in))).perform(click())
-        return this
     }
 
-    fun isSuccessfulLogin(): LoginScreenRobot {
+    fun isSuccessfulLogin() {
         onView(withId(R.id.successful_login_text_view)).check(matches(isDisplayed()))
         onView(withId(R.id.successful_login_text_view)).check(matches(withText(R.string.successful_login)))
-        return this
     }
 
 }
