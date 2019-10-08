@@ -14,5 +14,5 @@ Feature: Enter login details
     Then I expect to see successful login message
     Examples:
       | email        | password |
-      | abv@mail.com | 123456   |
+      | somelonmgemail@mail.com | 12345678   |
       | test@gmail.com | somePassWithVeryLongValue   |
